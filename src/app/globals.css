@@ -1,42 +1,57 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+  scroll-behavior: smooth;
 }
 
 * {
   box-sizing: border-box;
-  padding: 0;
-  margin: 0;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+@font-face {
+  font-family: "Krasnodar";
+  src: url("../../public/assets/fonts/KrasnodarGroteskTrial.otf")
+    format("opentype");
+  font-weight: 400;
+  font-style: normal;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+.textName {
+  font-family: "Krasnodar";
+}
+.mainComp {
+  position: relative;
+  height: 100vh;
+  padding: 120px 24px;
+  display: flex;
+  flex-direction: column;
+  scroll-snap-align: start;
+}
+.row {
+  margin: 20px 0;
+  display: flex;
+  height: auto;
+  & > a {
+    margin: 0 15px 0 0;
+  }
+}
+
+.caseComp {
+  position: relative;
+  height: max-content;
+  overflow-y: hidden;
+  padding: 120px 24px;
+  display: flex;
+  flex-direction: column;
+  border-left: 2px solid rgba(255, 255, 255, 4%);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  overscroll-behavior-y: contain;
+  @media screen and (min-width: 960px) {
+    height: 100vh;
+    padding: 120px 24px;
   }
 }

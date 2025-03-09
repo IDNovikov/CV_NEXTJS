@@ -1,0 +1,132 @@
+.arrows {
+  position: absolute;
+  left: 50%;
+  transform: translate(-30%, -20%);
+}
+.arrows span {
+  display: block;
+  width: 6.5vw;
+  height: 6.5vw;
+  max-width: 30px;
+  max-height: 30px;
+  border-bottom: 5px solid white;
+  border-right: 5px solid white;
+  transform: rotate(45deg);
+  margin: -10px;
+  animation: animate 2s infinite;
+}
+
+.arrow span:nth-child(2) {
+  animation-delay: -0.2s;
+}
+
+.arrow span:nth-child(3) {
+  animation-delay: -0.4s;
+}
+
+@keyframes animate {
+  0% {
+    opacity: 0;
+    transform: rotate(45deg) translate(-20px, -20px);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(45deg) translate(20px, 20px);
+  }
+}
+
+.button {
+  all: unset;
+  user-select: none;
+  min-width: 42px;
+  min-height: 17px;
+  width: max-content;
+  display: flex;
+  place-items: center;
+  background-color: #88efff;
+  cursor: pointer;
+  & img {
+    width: 12px;
+    margin: 4px 4px auto 0;
+  }
+}
+
+.card {
+  width: 100%;
+  height: auto;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid rgba(255, 255, 255, 7%);
+  border-radius: 4px;
+}
+
+.input {
+  all: unset;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: rgb(70, 70, 70);
+  min-width: 120px;
+  width: 70%;
+  max-width: 400px;
+  min-height: 30px;
+  padding-left: 10px;
+  display: flex;
+  place-items: center;
+  cursor: pointer;
+  color: white;
+
+  &::placeholder {
+    color: white;
+    font-size: 15px;
+  }
+  &:focus {
+    border: 1px solid #eaff60;
+  }
+}
+
+.linkButton {
+  pointer-events: all;
+  cursor: pointer;
+  display: flex;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  & img {
+    width: 100%;
+    opacity: 70%;
+  }
+}
+
+.linkDownload {
+  pointer-events: all;
+  text-decoration: none;
+}
+
+.stack {
+  padding: 6px;
+  min-width: max-content;
+  min-height: 17px;
+  width: 42px;
+  height: max-content;
+  display: flex;
+  place-items: center;
+  background-color: #eaff60;
+  box-sizing: unset;
+}
+
+.textRegular {
+  pointer-events: none;
+}
+
+.p {
+  word-wrap: nowrap;
+  color: rgb(255, 246, 0);
+}
+
+.textName {
+  font-family: "Krasnodar";
+}
