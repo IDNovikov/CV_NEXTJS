@@ -1,75 +1,106 @@
-// import React, { useState } from "react";
+"use client";
+import { Button, Card, Input, Text } from "@/UI/UI";
+import React, { useCallback, useState } from "react";
 
-// export const InviteForm = () => {
-//   const [name, setName] = useState(null);
-//   const [contact, setContact] = useState(null);
-//   const [isCorrectName, setIsCorrectName] = useState(null);
-//   const [isCorrectContact, setIsCorrectContact] = useState(null);
-//   const [isSend, setIsSend] = useState(false);
+export const InviteForm = () => {
+  type FormState = {
+    name: string;
+    contact: string;
+    isCorrectName: boolean | null;
+    isCorrectContact: boolean | null;
+    isSend: boolean | null;
+  };
 
-//   const makeInvite = () => {
-//     const invite = {
-//       name: name,
-//       contact: contact,
-//     };
-//     sendInvite(invite).then((res) => setIsSend(true));
-//   };
+  const [formState, setFormState] = useState<FormState>({
+    name: "",
+    contact: "",
+    isCorrectName: null,
+    isCorrectContact: null,
+    isSend: null,
+  });
 
-//   const validateForm = (name, contact) => {
-//     name == null || name == ""
-//       ? setIsCorrectName(false)
-//       : setIsCorrectName(true);
-//     contact == null || contact == ""
-//       ? setIsCorrectContact(false)
-//       : setIsCorrectContact(true);
-//     if (isCorrectName == true && isCorrectContact == true) {
-//       return makeInvite();
-//     }
-//   };
+  const validateField = (value: string): boolean => value.trim() !== "";
 
-//   return (
-//     <Card margin="10px 0" minHeight="237px">
-//       {isSend ? (
-//         <>
-//           <Medium color="white" size="20px" margin="auto 15px" align="center">
-//             Спасибо Вам за приглашение, в скором времения я дам обратную связь
-//             :)
-//           </Medium>
-//         </>
-//       ) : (
-//         <>
-//           <Medium color="white" size="20px" margin="10px auto" align="center">
-//             Пригласить на собеседование
-//           </Medium>
-//           <form>
-//             <Input
-//               borderColor={isCorrectName}
-//               margin="20px auto"
-//               type="text"
-//               placeholder={"Ваше имя..."}
-//               value={name}
-//               onChange={(e) => setName(e.target.value)}
-//             />
-//             <Input
-//               borderColor={isCorrectContact}
-//               margin="20px auto"
-//               type="text"
-//               placeholder={"Ваш контакт..."}
-//               value={contact}
-//               onChange={(e) => setContact(e.target.value)}
-//             />
-//           </form>
+  const handleChange = useCallback(
+    (field: keyof Pick<FormState, "name" | "contact">) =>
+      (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormState((prevState) => ({
+          ...prevState,
+          [field]: e.target.value,
+        }));
+      },
+    []
+  );
 
-//           <Button
-//             onClick={() => validateForm(name, contact)}
-//             margin="10px auto"
-//           >
-//             <Regular color="black" opacity={"70%"} margin="5px 0 5px 8px">
-//               Отправить
-//             </Regular>
-//           </Button>
-//         </>
-//       )}
-//     </Card>
-//   );
-// };
+  const validateForm = (): boolean => {
+    const isNameValid = validateField(formState.name);
+    const isContactValid = validateField(formState.contact);
+
+    setFormState((prevState) => ({
+      ...prevState,
+      isCorrectName: isNameValid,
+      isCorrectContact: isContactValid,
+    }));
+    return isNameValid && isContactValid;
+  };
+
+  const sendInvite = async (invite: { name: string; contact: string }) => {
+    try {
+      await fetch("/api/mailer", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(invite),
+      });
+      setFormState((prevState) => ({ ...prevState, isSend: true }));
+    } catch (error) {
+      setFormState((prevState) => ({ ...prevState, isSend: false }));
+      console.error("Ошибка при отправке:", error);
+    }
+  };
+
+  const handleSubmit = useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
+
+      if (validateForm()) {
+        sendInvite({ name: formState.name, contact: formState.contact });
+      }
+    },
+    [formState.name, formState.contact, validateForm]
+  );
+
+  return (
+    <Card margin="10px 0" minHeight="237px">
+      {formState.isSend ? (
+        <Text color="white" size={20} margin="auto 15px" align="center">
+          Спасибо за приглашение! В скором времени я дам обратную связь :)
+        </Text>
+      ) : (
+        <>
+          <Text color="white" size={20} margin="10px auto" align="center">
+            Пригласить на собеседование
+          </Text>
+          <Input
+            borderColor={formState?.isCorrectName}
+            margin="20px auto"
+            placeholder="Ваше имя..."
+            onChange={handleChange("name")}
+          />
+          <Input
+            borderColor={formState?.isCorrectContact}
+            margin="20px auto"
+            placeholder="Ваш контакт..."
+            onChange={handleChange("contact")}
+          />
+          <Button padding="8px 12px" margin="10px auto" onClick={handleSubmit}>
+            <Text color="black" opacity="70%">
+              Отправить
+            </Text>
+          </Button>
+        </>
+      )}
+    </Card>
+  );
+};

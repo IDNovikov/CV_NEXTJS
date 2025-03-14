@@ -2,6 +2,9 @@
   position: absolute;
   left: 50%;
   transform: translate(-30%, -20%);
+  @media screen and (min-width: 960px) {
+    visibility: hidden;
+  }
 }
 .arrows span {
   display: block;

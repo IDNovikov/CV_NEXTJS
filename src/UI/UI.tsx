@@ -1,4 +1,5 @@
 import styled from "@/UI/UI.module.css";
+import React from "react";
 
 interface UIProps {
   transform?: string;
@@ -13,7 +14,7 @@ interface UIProps {
   minHeight?: string;
   onChange?: React.ChangeEventHandler;
   placeholder?: string;
-  borderColor?: boolean;
+  borderColor?: boolean | null;
   link?: string;
   color?: string;
   size?: number;
@@ -77,23 +78,22 @@ export const Card: React.FC<UIProps> = ({
   </div>
 );
 
-export const Input: React.FC<UIProps> = ({
-  margin,
-  onChange,
-  placeholder,
-  borderColor = true,
-}): React.JSX.Element => (
-  <input
-    onChange={onChange}
-    className={styled.card}
-    placeholder={placeholder}
-    style={{
-      margin: margin,
-      borderColor: borderColor
-        ? "1px solid rgb(129, 129, 129)"
-        : "1px solid red",
-    }}
-  ></input>
+export const Input: React.FC<UIProps> = React.memo(
+  ({ margin, onChange, placeholder, borderColor = null }) => (
+    <input
+      type="text"
+      onChange={onChange}
+      className={styled.input}
+      placeholder={placeholder}
+      style={{
+        margin: margin,
+        border:
+          borderColor == true || borderColor == null
+            ? "1px solid rgb(129, 129, 129)"
+            : "1px solid red",
+      }}
+    />
+  )
 );
 export const LinkButton: React.FC<UIProps> = ({ children, link }) => (
   <a className={styled.linkButton} href={link}>

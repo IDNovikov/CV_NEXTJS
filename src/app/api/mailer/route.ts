@@ -3,12 +3,18 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
-    const { text } = await req.json();
+    const { name, contact } = await req.json();
 
-    if (!text || typeof text !== "string") {
+    if (
+      !name ||
+      !contact ||
+      typeof name !== "string" ||
+      typeof contact !== "string"
+    ) {
       return NextResponse.json({ message: "Invalid input" }, { status: 400 });
     }
 
+    const text = `This is invite from: ${name}. Contact:${contact}`;
     await sendMail({
       from: "autoMailerForIlya@yandex.ru",
       to: "crew665@yandex.ru",
