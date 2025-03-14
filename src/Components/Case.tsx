@@ -1,4 +1,4 @@
-import { Arrow, Card, Stack, Text } from "@/UI/UI";
+import { Card, Stack, Text } from "@/UI/UI";
 import { InviteForm } from "./InviteForm";
 
 export const Case = () => {
