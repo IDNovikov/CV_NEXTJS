@@ -1,4 +1,5 @@
 import styled from "@/UI/UI.module.css";
+import Image from "next/image";
 import React from "react";
 
 interface UIProps {
@@ -24,11 +25,7 @@ interface UIProps {
   isParagraph?: boolean;
 }
 
-export const Arrow: React.FC<UIProps> = ({
-  transform,
-  top,
-  bottom,
-}): React.JSX.Element => {
+export const Arrow: React.FC<UIProps> = ({ transform, top, bottom }) => {
   return (
     <div
       className={styled.arrows}
@@ -47,7 +44,7 @@ export const Button: React.FC<UIProps> = ({
   padding = "0",
   onClick,
   arrow,
-}): React.JSX.Element => {
+}) => {
   return (
     <button
       className={styled.button}
@@ -55,7 +52,7 @@ export const Button: React.FC<UIProps> = ({
       onClick={onClick}
     >
       {children}
-      {arrow && <img src={arrow} alt={""} />}
+      {arrow && <Image src={arrow} alt={""} />}
     </button>
   );
 };
@@ -65,7 +62,7 @@ export const Card: React.FC<UIProps> = ({
   minHeight,
   margin,
   children,
-}): React.JSX.Element => (
+}) => (
   <div
     className={styled.card}
     style={{
