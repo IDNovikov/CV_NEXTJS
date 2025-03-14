@@ -75,7 +75,7 @@ export const Card: React.FC<UIProps> = ({
   </div>
 );
 
-export const Input: React.FC<UIProps> = React.memo(
+const Input: React.FC<UIProps> = React.memo(
   ({ margin, onChange, placeholder, borderColor = null }) => (
     <input
       type="text"
@@ -92,6 +92,9 @@ export const Input: React.FC<UIProps> = React.memo(
     />
   )
 );
+Input.displayName = "Input";
+export default Input;
+
 export const LinkButton: React.FC<UIProps> = ({ children, link }) => (
   <a className={styled.linkButton} href={link}>
     {children}

@@ -1,5 +1,5 @@
 "use client";
-import { Button, Card, Input, Text } from "@/UI/UI";
+import Input, { Button, Card, Text } from "@/UI/UI";
 import React, { useCallback, useState } from "react";
 
 export const InviteForm = () => {
