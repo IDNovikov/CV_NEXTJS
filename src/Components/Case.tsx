@@ -35,7 +35,7 @@ export const Case = () => {
             Fullstack Engineer
           </Text>
           <Text color="white" opacity={"70%"} margin="9px 0">
-            стартап проект
+            стартап проект Фонда Содействия Инновациям
           </Text>
           <Text color="white" opacity={"70%"} margin="5px 0 5px 8px">
             • проектирование архитектуры
@@ -79,10 +79,10 @@ export const Case = () => {
             • поддержка жизнеспособности проекта
           </Text>
           <Text color="white" opacity={"70%"} margin="5px 0 5px 8px">
-            • исправление багов
+            • рефакторинг
           </Text>
           <Text color="white" opacity={"70%"} margin="5px 0 5px 8px">
-            • модернизация
+            • модернизация UI/UX
           </Text>
 
           <div style={{ display: "flex", flexWrap: "wrap" }}>
@@ -124,7 +124,7 @@ export const Case = () => {
             • разработка клиентской и серверной части
           </Text>
           <Text color="white" opacity={"70%"} margin="5px 0 5px 8px">
-            • взаимодействие с реляционной БД
+            • интеграция проекта в общий кластер
           </Text>
           <div style={{ display: "flex", flexWrap: "wrap" }}>
             <Stack margin={"10px"}>

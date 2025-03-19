@@ -29,9 +29,13 @@ body {
   display: flex;
   flex-direction: column;
   scroll-snap-align: start;
+  @media screen and (max-width: 960px) {
+    height: 100vh;
+    padding: 80px 24px;
+  }
 }
 .row {
-  margin: 20px 0;
+  margin: 10px 0;
   display: flex;
   height: auto;
   & > a {

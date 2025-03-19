@@ -25,14 +25,13 @@ export const Main = () => {
         color="white"
         opacity={"70%"}
         isParagraph={true}
-        size={16}
+        size={18}
         margin="25px 0"
       >
-        Я увлечен созданием целостных проектов, ориентированных на качественный
-        пользовательский опыт.
+        Превращаю идеи в работающие продукты, охватывая полный цикл разработки.
       </Text>
 
-      <Button margin="35px 0" padding={"10px"}>
+      <Button margin="25px 0" padding={"10px"}>
         <LinkDownload>
           <Text color="black" margin={"10px 20px"}>
             Смотреть резюме
@@ -52,7 +51,7 @@ export const Main = () => {
         </LinkButton>
       </div>
 
-      <Arrow transform={"rotate(0deg)"} bottom={"10vh"} />
+      <Arrow transform={"rotate(0deg)"} bottom={"15vh"} />
     </div>
   );
 };
